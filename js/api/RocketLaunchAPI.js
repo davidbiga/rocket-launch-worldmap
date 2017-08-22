@@ -25,7 +25,6 @@ RocketLaunchAPI.prototype = {
             enddate = this.getFormattedDate(0,this.monthsOut,0);
             // lets add this to our users screen
             $(".title").html("Rocket Launches from " + startdate + " through " + enddate);
-            console.log(startdate, enddate);
         }
         // data to be sent
         var params = {
@@ -68,7 +67,6 @@ RocketLaunchAPI.prototype = {
         var self = this;
         var lastKey = launches.length;
         var i = 0;
-        console.log(lastKey);
         // data to be sent
         var params = {
             'fields': [
@@ -85,7 +83,6 @@ RocketLaunchAPI.prototype = {
                 dataType: "json",
                 data: params,
                 success:function(response) {
-                    console.log(response);
                     // edit response to include the country name
                     self.getCountryName(response.launches[0].location.pads[0].longitude, response.launches[0].location.pads[0].latitude, function(geoinfo){
                         var country = geoinfo.results[ Object.keys(geoinfo.results).sort().pop() ];

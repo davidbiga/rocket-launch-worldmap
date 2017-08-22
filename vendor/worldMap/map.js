@@ -26,10 +26,12 @@ $(function(){
 		this.stage = {};
 		
 		this.INTERSECTED = null;
-		// preload
+		/* TODO: for future implementation of rocketship icon on map when a launch is scheduled
+		// preload image
 		this.rocketShipImage = new THREE.MeshBasicMaterial({
 			map:THREE.ImageUtils.loadTexture('css/img/rocketship.png')
 		});
+		*/
 	}
 	
 	Map.prototype = {
@@ -139,8 +141,9 @@ $(function(){
 				// create a mesh based on material and extruded shape
 				var toAdd = new THREE.Mesh(shape3d, material);
 				
-				//set name of mesh
+				// set name of mesh
 				toAdd.name = countries[i].data.name;
+				// add blank property for adding the launch date (if any)
 				toAdd.netlaunch = "";
 				
 				// rotate and position the elements
@@ -149,18 +152,17 @@ $(function(){
 				toAdd.translateZ(50);
 				toAdd.translateY(20);
 
-				// lets see if this country has a rocket launch, if so, add a new mesh which contains an image of our rocket ship
+				// lets see if this country has a rocket launch happening
 				if(launches != null) {
 					for(var j = 0; j < launches.length; j++) {
 						if(launches[j].country == countries[i].data.name) {
 							//launches.splice(j, 1); <!-- potential usage
-
 							// change color of map material 
 							toAdd.material.color.setHex( 0x08c );
 							// adds net time for rocket launch
 							toAdd.netlaunch = launches[j].netlaunch;
 
-							/* TODO: Add in support for displaying a rocketship
+							/* TODO: for future implementation of rocketship icon on map when a launch is scheduled
 							includeRocketShip = true;
 							// create a mesh based on material and extruded shape
 							var imgPlane = new THREE.Mesh(shape3d, this.rocketShipImage);
@@ -179,7 +181,8 @@ $(function(){
 				}
 				// add to scene
 				this.scene.add(toAdd);
-				/* TODO add in support for displaying a rocketship
+
+				/* TODO: for future implementation of rocketship icon on map when a launch is scheduled
 				if(includeRocketShip) {
 					this.scene.add(imgPlane);
 				}
