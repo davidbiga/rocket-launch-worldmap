@@ -3,6 +3,8 @@ Rocket Launch Worldmap showcases D3.js and Three.js ability to work together, ut
 
 Currently, it displays rocket launches coming in the next month with a limit of 10 launches.  The reason for the limiation is due to Google Maps API only allowing you to request 10 times per second.  
 
+See [live example](http://davidbiga.io/rocket-launch-worldmap/)
+
 # Future Optimizations
 1. Get away from Google Maps API for getting correct country naming convention and use own local mapping object
 2. Display all returned scheduled launches for date period
