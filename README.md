@@ -1,5 +1,5 @@
 # rocket-launch-worldmap
-Rocket Launch Worldmap show cases D3.js and Three.js ability to work together, utilizing an open source API for displaying upcoming rocket launches in their corresponding country.
+Rocket Launch Worldmap showcases D3.js and Three.js ability to work together, utilizing an open source API for displaying upcoming rocket launches in their corresponding country.
 
 Currently, it displays rocket launches coming in the next month with a limit of 10 launches.  The reason for the limiation is due to Google Maps API only allowing you to request 10 times per second.  
 
