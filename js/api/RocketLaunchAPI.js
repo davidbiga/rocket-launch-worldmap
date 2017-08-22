@@ -15,7 +15,11 @@ function RocketLaunchAPI() {
 
 RocketLaunchAPI.prototype = {
     constructor: RocketLaunchAPI,
-    // returns prepared data to be used by our map
+    /**
+    *
+    * returns prepared data to be used by our map
+    *
+    */
     getUpcomingLaunches: function(callback = null, startdate = null, enddate) {
         var self = this;
         if(startdate == null || enddate == null) {
