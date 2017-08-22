@@ -6,11 +6,11 @@
 
 function RocketLaunchAPI() {
     this.url = "https://launchlibrary.net/1.2/";
-    this.googleMaps = "http://maps.googleapis.com/maps/api/geocode/json"
+    this.googleMaps = "http://maps.googleapis.com/maps/api/geocode/json" // call geocode to get country spec name (simply for mapping reasons vs creating a full map)
     this.method = "GET"; // GET is only supported by launchlibrary
     this.monthsOut = 1; // default enddate
     this.limit = 10 // how many launches do we want returned
-    this.prepLaunches = [];
+    this.prepLaunches = []; // returned launches
 }
 
 RocketLaunchAPI.prototype = {
@@ -85,9 +85,10 @@ RocketLaunchAPI.prototype = {
                 success:function(response) {
                     // edit response to include the country name
                     self.getCountryName(response.launches[0].location.pads[0].longitude, response.launches[0].location.pads[0].latitude, function(geoinfo){
+                        // get last object in object (contains country spec name inside formatted_address)
                         var country = geoinfo.results[ Object.keys(geoinfo.results).sort().pop() ];
                         response.launches[0].location.country = country.formatted_address;
-
+                        // prepare an object to be pushed to prepLaunches
                         var tmp = {
                             // there is only one item returned
                             'name': response.launches[0].name,
@@ -144,7 +145,11 @@ RocketLaunchAPI.prototype = {
 		  	}
 		});
     },
-    // pass in optional incremental paramaters to adjust to future dates
+    /**
+    *
+    * pass in optional incremental paramaters to adjust to future dates
+    *
+    */
     getFormattedDate: function(plusDays = 0, plusMonths = 0, plusYears = 0) {
         var time = new Date();
         time.setMonth(time.getMonth() + plusMonths);
